@@ -9,6 +9,16 @@ export type HealthboxRequestOptions = {
   params: any;
 };
 
+export type HealthboxRawResponse<T> = {
+   result: T[];
+   total_results: number;
+}
+
+export type HealthboxResponse<T> = {
+   results: T[];
+   totalCount: number;
+}
+
 export type LocaleParams = { c?: string; l?: string };
 export type PaginationParams = { limit?: number; from?: number; }
 export type TextParam = { q: string };

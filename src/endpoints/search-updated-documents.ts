@@ -8,9 +8,9 @@ import {
   PaginationParams,
   RestrictToFieldOptions,
   RestrictToFieldParam,
-} from 'src/types';
+} from '../types';
 
-export enum SearchFieldRestriction {
+export enum SearchUpdatedDocumentsFieldRestriction {
   LastUpdate = 'last_update',
 }
 
@@ -27,7 +27,7 @@ export enum DocumentType {
 
 export type SearchUpdatedDocumentsOptions = LocaleOptions &
   PaginationOptions &
-  RestrictToFieldOptions<SearchFieldRestriction> & {
+  RestrictToFieldOptions<SearchUpdatedDocumentsFieldRestriction> & {
     endDate?: Date;
     documentType?: DocumentType;
   };
@@ -40,7 +40,7 @@ export type SearchUpdatedDocumentsParams = LocaleParams &
     t?: string;
   };
 
-export type SearchUpdatedDocumentsRawResponse = {
+export type SearchUpdatedDocumentsRawRecord = {
   commercial_name: string;
   document_id: number;
   language_code: string;
@@ -53,7 +53,7 @@ export type SearchUpdatedDocumentsRawResponse = {
   source: string;
 };
 
-export type SearchUpdatedDocumentsResponse = {
+export type SearchUpdatedDocumentsRecord = {
   commercialName: string;
   documentId: number;
   languageCode: string;
@@ -100,17 +100,17 @@ export class SearchUpdatedDocuments {
     return params;
   }
 
-  static mapResponse(input: SearchUpdatedDocumentsRawResponse): SearchUpdatedDocumentsResponse {
-    return {
-      commercialName: input.commercial_name,
-      documentId: input.document_id,
-      languageCode: input.language_code,
-      leafletTypeCode: input.leafletTypeCode,
-      manufacturer: input.mah,
-      mimeType: input.mime_type,
-      nmanCode: input.nman_code,
-      source: input.source,
-      updatedOn: moment(input.lastUpdate).toDate(),
-    };
+  static mapResponse(input: SearchUpdatedDocumentsRawRecord[]): SearchUpdatedDocumentsRecord[] {
+    return input.map((record: SearchUpdatedDocumentsRawRecord) => ({
+      commercialName: record.commercial_name,
+      documentId: record.document_id,
+      languageCode: record.language_code,
+      leafletTypeCode: record.leafletTypeCode,
+      manufacturer: record.mah,
+      mimeType: record.mime_type,
+      nmanCode: record.nman_code,
+      source: record.source,
+      updatedOn: moment(record.lastUpdate).toDate(),
+    }));
   }
 }

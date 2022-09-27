@@ -12,7 +12,7 @@ import {
 export type SearchAlertsOptions = LocaleOptions & PaginationOptions;
 export type SearchAlertsParams = TextParam & LocaleParams & PaginationParams;
 
-export type SearchAlertsRawResponse = {
+export type SearchAlertsRawRecord = {
   author: string;
   category: string;
   comments: string;
@@ -25,7 +25,7 @@ export type SearchAlertsRawResponse = {
   title: string;
 };
 
-export type SearchAlertsResponse = {
+export type SearchAlertsRecord = {
   author: string;
   category: string;
   comments: string;
@@ -57,17 +57,17 @@ export class SearchAlerts {
     };
   }
 
-  static mapResponse(input: SearchAlertsRawResponse): SearchAlertsResponse {
-    return {
-      author: input.author,
-      category: input.category,
-      comments: input.comments,
-      countryCode: input.countryCode,
-      languageCode: input.languageCode,
-      datePublished: moment(input.pubdate).toDate(),
-      refLink: input.ref_link,
-      source: input.source,
-      title: input.title,
-    };
+  static mapResponse(input: SearchAlertsRawRecord[]): SearchAlertsRecord[] {
+    return input.map((record: SearchAlertsRawRecord) => ({
+      author: record.author,
+      category: record.category,
+      comments: record.comments,
+      countryCode: record.countryCode,
+      languageCode: record.languageCode,
+      datePublished: moment(record.pubdate).toDate(),
+      refLink: record.ref_link,
+      source: record.source,
+      title: record.title,
+    }));
   }
 }

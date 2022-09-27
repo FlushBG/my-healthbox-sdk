@@ -2,22 +2,29 @@ import axios, { AxiosInstance } from 'axios';
 import {
   FullTextSearch,
   FullTextSearchOptions,
-  FullTextSearchRawResponse,
-  FullTextSearchResponse,
+  FullTextSearchRawRecord,
+  FullTextSearchRecord,
 } from './endpoints/full-text-search';
 import {
   SearchAlerts,
   SearchAlertsOptions,
-  SearchAlertsRawResponse,
-  SearchAlertsResponse,
+  SearchAlertsRawRecord,
+  SearchAlertsRecord,
 } from './endpoints/search-alerts';
 import {
   SearchUpdatedDocuments,
   SearchUpdatedDocumentsOptions,
-  SearchUpdatedDocumentsRawResponse,
-  SearchUpdatedDocumentsResponse,
+  SearchUpdatedDocumentsRawRecord,
+  SearchUpdatedDocumentsRecord,
 } from './endpoints/search-updated-documents';
-import { HealthboxConfig, HealthboxCountry, HealthboxLanguage, HealthboxRequestOptions } from './types';
+import {
+  HealthboxConfig,
+  HealthboxCountry,
+  HealthboxLanguage,
+  HealthboxRawResponse,
+  HealthboxRequestOptions,
+  HealthboxResponse,
+} from './types';
 
 export class HealthboxClient {
   private client: AxiosInstance;
@@ -39,40 +46,58 @@ export class HealthboxClient {
     });
   }
 
-  async fullTextSearch(text: string, options: FullTextSearchOptions = {}): Promise<FullTextSearchResponse> {
+  async fullTextSearch(
+    text: string,
+    options: FullTextSearchOptions = {}
+  ): Promise<HealthboxResponse<FullTextSearchRecord>> {
     const defaultOptions = FullTextSearch.getDefaultOptions(this.defaultCountry, this.defaultLanguage);
     const mergedOptions = this.mergeEndpointOptions(defaultOptions, options);
-
-    const rawResponse = await this.get<FullTextSearchRawResponse>('/search/fulltext', {
+    const rawResponse = await this.get<HealthboxRawResponse<FullTextSearchRawRecord>>('/search/fulltext', {
       params: FullTextSearch.buildSearchParams(text, mergedOptions),
     });
 
-    return FullTextSearch.mapResponse(rawResponse);
+    return {
+      results: FullTextSearch.mapResponse(rawResponse.result),
+      totalCount: rawResponse.total_results,
+    };
   }
 
-  async searchAlerts(text: string, options: SearchAlertsOptions = {}): Promise<SearchAlertsResponse> {
+  async searchAlerts(
+    text: string,
+    options: SearchAlertsOptions = {}
+  ): Promise<HealthboxResponse<SearchAlertsRecord>> {
     const defaultOptions = SearchAlerts.getDefaultOptions(this.defaultCountry, this.defaultLanguage);
     const mergedOptions = this.mergeEndpointOptions(defaultOptions, options);
-
-    const rawResponse = await this.get<SearchAlertsRawResponse>('/search/alerts', {
+    const rawResponse = await this.get<HealthboxRawResponse<SearchAlertsRawRecord>>('/search/alerts', {
       params: SearchAlerts.buildSearchParams(text, mergedOptions),
     });
 
-    return SearchAlerts.mapResponse(rawResponse);
+    return {
+      results: SearchAlerts.mapResponse(rawResponse.result),
+      totalCount: rawResponse.total_results,
+    };
   }
 
   async searchUpdatedDocuments(
     startDate: Date,
     options: SearchUpdatedDocumentsOptions = {}
-  ): Promise<SearchUpdatedDocumentsResponse> {
-    const defaultOptions = SearchUpdatedDocuments.getDefaultOptions(this.defaultCountry, this.defaultLanguage);
+  ): Promise<HealthboxResponse<SearchUpdatedDocumentsRecord>> {
+    const defaultOptions = SearchUpdatedDocuments.getDefaultOptions(
+      this.defaultCountry,
+      this.defaultLanguage
+    );
     const mergedOptions = this.mergeEndpointOptions(defaultOptions, options);
+    const rawResponse = await this.get<HealthboxRawResponse<SearchUpdatedDocumentsRawRecord>>(
+      '/search/updatedDocuments',
+      {
+        params: SearchUpdatedDocuments.buildSearchParams(startDate, mergedOptions),
+      }
+    );
 
-    const rawResponse = await this.get<SearchUpdatedDocumentsRawResponse>('/search/updatedDocuments', {
-      params: SearchUpdatedDocuments.buildSearchParams(startDate, mergedOptions),
-    });
-
-    return SearchUpdatedDocuments.mapResponse(rawResponse);
+    return {
+      results: SearchUpdatedDocuments.mapResponse(rawResponse.result),
+      totalCount: rawResponse.total_results,
+    };
   }
 
   getProductInfo(): Promise<any> {
@@ -90,6 +115,7 @@ export class HealthboxClient {
   private async get<T>(endpoint: string, options?: HealthboxRequestOptions): Promise<T> {
     try {
       const response = await this.client.get<T>(endpoint, options);
+      console.log('RAW RES', response);
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {

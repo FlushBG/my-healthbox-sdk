@@ -10,17 +10,20 @@ import {
   TextParam,
 } from '../types';
 
-export enum SearchFieldRestriction {
+export enum FullTextSearchFieldRestriction {
   Name = 'name',
   ActiveIngredient = 'active_ingredient',
   Barcode = 'barcode',
   AtcCode = 'atc_code',
 }
 
-export type FullTextSearchOptions = LocaleOptions & PaginationOptions & RestrictToFieldOptions<SearchFieldRestriction>;
+export type FullTextSearchOptions = LocaleOptions &
+  PaginationOptions &
+  RestrictToFieldOptions<FullTextSearchFieldRestriction>;
+
 export type FullTextSearchParams = TextParam & LocaleParams & PaginationParams & RestrictToFieldParam;
 
-export type FullTextSearchRawResponse = {
+export type FullTextSearchRawRecord = {
   active_ingredient: string;
   commercial_name: string;
   countryCode: string;
@@ -32,7 +35,7 @@ export type FullTextSearchRawResponse = {
   product_id: string;
 };
 
-export type FullTextSearchResponse = {
+export type FullTextSearchRecord = {
   activeIngredient: string;
   commercialName: string;
   countryCode: string;
@@ -74,17 +77,17 @@ export class FullTextSearch {
     return params;
   }
 
-  static mapResponse(input: FullTextSearchRawResponse): FullTextSearchResponse {
-    return {
-      activeIngredient: input.active_ingredient,
-      commercialName: input.commercial_name,
-      countryCode: input.countryCode,
-      dosage: input.dosage,
-      languageCode: input.languageCode,
-      manufacturer: input.mah,
-      name: input.name,
-      pharmaceuticalForm: input.pharmaceutical_form,
-      productId: input.product_id,
-    };
+  static mapResponse(input: FullTextSearchRawRecord[]): FullTextSearchRecord[] {
+    return input.map((record: FullTextSearchRawRecord) => ({
+      activeIngredient: record.active_ingredient,
+      commercialName: record.commercial_name,
+      countryCode: record.countryCode,
+      dosage: record.dosage,
+      languageCode: record.languageCode,
+      manufacturer: record.mah,
+      name: record.name,
+      pharmaceuticalForm: record.pharmaceutical_form,
+      productId: record.product_id,
+    }));
   }
 }
