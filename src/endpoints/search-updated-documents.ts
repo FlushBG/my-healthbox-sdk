@@ -61,7 +61,7 @@ export type SearchUpdatedDocumentsResponse = {
   leafletTypeCode: string;
   manufacturer: string;
   mimeType: string;
-  internalCode: string;
+  nmanCode: string;
   source: string;
 };
 
@@ -104,11 +104,11 @@ export class SearchUpdatedDocuments {
     return {
       commercialName: input.commercial_name,
       documentId: input.document_id,
-      internalCode: input.nman_code,
       languageCode: input.language_code,
       leafletTypeCode: input.leafletTypeCode,
       manufacturer: input.mah,
       mimeType: input.mime_type,
+      nmanCode: input.nman_code,
       source: input.source,
       updatedOn: moment(input.lastUpdate).toDate(),
     };
