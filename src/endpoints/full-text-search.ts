@@ -1,4 +1,14 @@
-import { HealthboxCountry, HealthboxLanguage } from '../types';
+import {
+  HealthboxCountry,
+  HealthboxLanguage,
+  LocaleOptions,
+  LocaleParams,
+  PaginationOptions,
+  PaginationParams,
+  RestrictToFieldOptions,
+  RestrictToFieldParam,
+  TextParam,
+} from '../types';
 
 export enum SearchFieldRestriction {
   Name = 'name',
@@ -7,22 +17,8 @@ export enum SearchFieldRestriction {
   AtcCode = 'atc_code',
 }
 
-export type FullTextSearchOptions = {
-  country?: HealthboxCountry;
-  language?: HealthboxLanguage;
-  restrictToField?: SearchFieldRestriction;
-  limit?: number;
-  from?: number;
-};
-
-export type FullTextSearchParams = {
-  q: string;
-  c?: string;
-  l?: string;
-  f?: string;
-  limit?: number;
-  from?: number;
-};
+export type FullTextSearchOptions = LocaleOptions & PaginationOptions & RestrictToFieldOptions<SearchFieldRestriction>;
+export type FullTextSearchParams = TextParam & LocaleParams & PaginationParams & RestrictToFieldParam;
 
 export type FullTextSearchRawResponse = {
   active_ingredient: string;
@@ -48,33 +44,41 @@ export type FullTextSearchResponse = {
   productId: string;
 };
 
-export const getDefaultOptions = (
-  defaultCountry: HealthboxCountry,
-  defaultLanguage: HealthboxLanguage
-): FullTextSearchOptions => ({
-  country: defaultCountry,
-  language: defaultLanguage,
-  limit: 32,
-  from: 0,
-});
+export class FullTextSearch {
+  static getDefaultOptions(
+    defaultCountry: HealthboxCountry,
+    defaultLanguage: HealthboxLanguage
+  ): FullTextSearchOptions {
+    return {
+      country: defaultCountry,
+      language: defaultLanguage,
+      limit: 32,
+      from: 0,
+    };
+  }
 
-export const buildSearchParams = (text: string, params: FullTextSearchOptions): FullTextSearchParams => ({
-  q: text,
-  c: params.country,
-  l: params.language,
-  f: params.restrictToField,
-  limit: params.limit,
-  from: params.from,
-});
+  static buildSearchParams(text: string, params: FullTextSearchOptions) {
+    return {
+      q: text,
+      c: params.country,
+      l: params.language,
+      f: params.restrictToField,
+      limit: params.limit,
+      from: params.from,
+    };
+  }
 
-export const mapResponse = (input: FullTextSearchRawResponse): FullTextSearchResponse => ({
-  activeIngredient: input.active_ingredient,
-  commercialName: input.commercial_name,
-  countryCode: input.countryCode,
-  dosage: input.dosage,
-  languageCode: input.languageCode,
-  manufacturer: input.mah,
-  name: input.name,
-  pharmaceuticalForm: input.pharmaceutical_form,
-  productId: input.product_id,
-});
+  static mapResponse(input: FullTextSearchRawResponse): FullTextSearchResponse {
+    return {
+      activeIngredient: input.active_ingredient,
+      commercialName: input.commercial_name,
+      countryCode: input.countryCode,
+      dosage: input.dosage,
+      languageCode: input.languageCode,
+      manufacturer: input.mah,
+      name: input.name,
+      pharmaceuticalForm: input.pharmaceutical_form,
+      productId: input.product_id,
+    };
+  }
+}

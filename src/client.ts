@@ -1,12 +1,11 @@
 import axios, { AxiosInstance } from 'axios';
 import {
-  buildSearchParams,
+  FullTextSearch,
   FullTextSearchOptions,
   FullTextSearchRawResponse,
   FullTextSearchResponse,
-  getDefaultOptions,
-  mapResponse,
 } from './endpoints/full-text-search';
+import { SearchAlerts, SearchAlertsOptions, SearchAlertsRawResponse } from './endpoints/search-alerts';
 import { HealthboxConfig, HealthboxCountry, HealthboxLanguage, HealthboxRequestOptions } from './types';
 
 export class HealthboxClient {
@@ -30,19 +29,25 @@ export class HealthboxClient {
   }
 
   async fullTextSearch(text: string, options: FullTextSearchOptions = {}): Promise<FullTextSearchResponse> {
-    const defaultOptions = getDefaultOptions(this.defaultCountry, this.defaultLanguage);
-    const searchOptions = this.mergeEndpointOptions(defaultOptions, options);
-    const searchParams = buildSearchParams(text, searchOptions);
+    const defaultOptions = FullTextSearch.getDefaultOptions(this.defaultCountry, this.defaultLanguage);
+    const mergedOptions = this.mergeEndpointOptions(defaultOptions, options);
 
     const rawResponse = await this.get<FullTextSearchRawResponse>('/search/fulltext', {
-      params: searchParams,
+      params: FullTextSearch.buildSearchParams(text, mergedOptions),
     });
 
-    return mapResponse(rawResponse);
+    return FullTextSearch.mapResponse(rawResponse);
   }
 
-  searchAlerts(): Promise<any> {
-    throw new Error('Not implemented!');
+  async searchAlerts(text: string, options: SearchAlertsOptions = {}): Promise<any> {
+    const defaultOptions = SearchAlerts.getDefaultOptions(this.defaultCountry, this.defaultLanguage);
+    const mergedOptions = this.mergeEndpointOptions(defaultOptions, options);
+
+    const rawResponse = await this.get<SearchAlertsRawResponse>('/search/alerts', {
+      params: SearchAlerts.buildSearchParams(text, mergedOptions),
+    });
+
+    return SearchAlerts.mapResponse(rawResponse);
   }
 
   searchUpdatedDocuments(): Promise<any> {
