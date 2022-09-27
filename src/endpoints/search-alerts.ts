@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {
   HealthboxCountry,
   HealthboxLanguage,
@@ -46,13 +47,13 @@ export class SearchAlerts {
     };
   }
 
-  static buildSearchParams(text: string, params: SearchAlertsOptions) {
+  static buildSearchParams(text: string, options: SearchAlertsOptions): SearchAlertsParams {
     return {
       q: text,
-      c: params.country,
-      l: params.language,
-      limit: params.limit,
-      from: params.from,
+      c: options.country,
+      l: options.language,
+      limit: options.limit,
+      from: options.from,
     };
   }
 
@@ -63,7 +64,7 @@ export class SearchAlerts {
       comments: input.comments,
       countryCode: input.countryCode,
       languageCode: input.languageCode,
-      datePublished: new Date(input.pubdate),
+      datePublished: moment(input.pubdate).toDate(),
       refLink: input.ref_link,
       source: input.source,
       title: input.title,

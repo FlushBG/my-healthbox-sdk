@@ -57,15 +57,21 @@ export class FullTextSearch {
     };
   }
 
-  static buildSearchParams(text: string, params: FullTextSearchOptions) {
-    return {
+  static buildSearchParams(text: string, options: FullTextSearchOptions): FullTextSearchParams {
+    const params: FullTextSearchParams = {
       q: text,
-      c: params.country,
-      l: params.language,
-      f: params.restrictToField,
-      limit: params.limit,
-      from: params.from,
+      c: options.country,
+      l: options.language,
+      f: options.restrictToField,
+      limit: options.limit,
+      from: options.from,
     };
+
+    if (options.restrictToField) {
+      params.f = options.restrictToField;
+    }
+
+    return params;
   }
 
   static mapResponse(input: FullTextSearchRawResponse): FullTextSearchResponse {
