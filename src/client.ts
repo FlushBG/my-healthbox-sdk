@@ -1,0 +1,83 @@
+import axios, { AxiosInstance } from 'axios';
+import {
+  buildSearchParams,
+  FullTextSearchOptions,
+  FullTextSearchRawResponse,
+  FullTextSearchResponse,
+  getDefaultOptions,
+  mapResponse,
+} from './endpoints/full-text-search';
+import { HealthboxConfig, HealthboxCountry, HealthboxLanguage, HealthboxRequestOptions } from './types';
+
+export class HealthboxClient {
+  private client: AxiosInstance;
+  private defaultCountry: HealthboxCountry;
+  private defaultLanguage: HealthboxLanguage;
+
+  constructor(config: HealthboxConfig) {
+    const { apiKey, apiHost, defaultCountry, defaultLanguage } = config;
+
+    this.defaultCountry = defaultCountry || HealthboxCountry.USA;
+    this.defaultLanguage = defaultLanguage || HealthboxLanguage.English;
+    this.client = axios.create({
+      baseURL: 'https://myhealthbox.p.rapidapi.com',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-RapidAPI-Key': apiKey,
+        'X-RapidAPI-Host': apiHost || 'myhealthbox.p.rapidapi.com',
+      },
+    });
+  }
+
+  async fullTextSearch(text: string, options: FullTextSearchOptions = {}): Promise<FullTextSearchResponse> {
+    const defaultOptions = getDefaultOptions(this.defaultCountry, this.defaultLanguage);
+    const searchOptions = this.mergeEndpointOptions(defaultOptions, options);
+    const searchParams = buildSearchParams(text, searchOptions);
+
+    const rawResponse = await this.get<FullTextSearchRawResponse>('/search/fulltext', {
+      params: searchParams,
+    });
+
+    return mapResponse(rawResponse);
+  }
+
+  searchAlerts(): Promise<any> {
+    throw new Error('Not implemented!');
+  }
+
+  searchUpdatedDocuments(): Promise<any> {
+    throw new Error('Not implemented!');
+  }
+
+  getProductInfo(): Promise<any> {
+    throw new Error('Not implemented!');
+  }
+
+  getProductDocuments(): Promise<any> {
+    throw new Error('Not implemented!');
+  }
+
+  getDocumentUrl(): Promise<any> {
+    throw new Error('Not implemented!');
+  }
+
+  private async get<T>(endpoint: string, options?: HealthboxRequestOptions): Promise<T> {
+    try {
+      const response = await this.client.get<T>(endpoint, options);
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw new Error(`[AXIOS]: ${error.message}`);
+      } else {
+        throw new Error(error.message);
+      }
+    }
+  }
+
+  private mergeEndpointOptions<T>(defaultParams: T, params: T): T {
+    return {
+      ...defaultParams,
+      ...params,
+    };
+  }
+}

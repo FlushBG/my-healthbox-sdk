@@ -1,0 +1,33 @@
+{
+  "name": "my-healthbox-sdk",
+  "version": "1.0.0",
+  "description": "An SDK to access and use myHealthbox API",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && microbundle --tsconfig tsconfig.json --no-sourcemap",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlushBG/my-healthbox-sdk.git"
+  },
+  "keywords": [
+    "sdk",
+    "my",
+    "healthbox",
+    "medicine",
+    "api"
+  ],
+  "author": "Angel Angelov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FlushBG/my-healthbox-sdk/issues"
+  },
+  "homepage": "https://github.com/FlushBG/my-healthbox-sdk#readme",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
