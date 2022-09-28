@@ -1,13 +1,36 @@
 import axios, { AxiosInstance } from 'axios';
 import {
-  buildSearchParams,
-  FullTextSearchOptions,
-  FullTextSearchRawResponse,
-  FullTextSearchResponse,
-  getDefaultOptions,
-  mapResponse,
-} from './endpoints/full-text-search';
-import { HealthboxConfig, HealthboxCountry, HealthboxLanguage, HealthboxRequestOptions } from './types';
+  HealthboxConfig,
+  HealthboxCountry,
+  HealthboxLanguage,
+  HealthboxRawResponse,
+  HealthboxRequestOptions,
+  HealthboxResponse,
+} from './types';
+import {
+  SearchFullText,
+  SearchFullTextOptions,
+  SearchFullTextRawRecord,
+  SearchFullTextRecord,
+} from './endpoints/search-full-text';
+import {
+  SearchAlerts,
+  SearchAlertsOptions,
+  SearchAlertsRawRecord,
+  SearchAlertsRecord,
+} from './endpoints/search-alerts';
+import {
+  SearchUpdatedDocuments,
+  SearchUpdatedDocumentsOptions,
+  SearchUpdatedDocumentsRawRecord,
+  SearchUpdatedDocumentsRecord,
+} from './endpoints/search-updated-documents';
+import { GetProductInfo, GetProductInfoRawRecord, GetProductInfoRecord } from './endpoints/get-product-info';
+import {
+  GetProductDocuments,
+  GetProductDocumentsRawRecord,
+  GetProductDocumentsRecord,
+} from './endpoints/get-product-documents';
 
 export class HealthboxClient {
   private client: AxiosInstance;
@@ -29,41 +52,93 @@ export class HealthboxClient {
     });
   }
 
-  async fullTextSearch(text: string, options: FullTextSearchOptions = {}): Promise<FullTextSearchResponse> {
-    const defaultOptions = getDefaultOptions(this.defaultCountry, this.defaultLanguage);
-    const searchOptions = this.mergeEndpointOptions(defaultOptions, options);
-    const searchParams = buildSearchParams(text, searchOptions);
-
-    const rawResponse = await this.get<FullTextSearchRawResponse>('/search/fulltext', {
-      params: searchParams,
+  async searchFullText(
+    text: string,
+    options: SearchFullTextOptions = {}
+  ): Promise<HealthboxResponse<SearchFullTextRecord>> {
+    const defaultOptions = SearchFullText.getDefaultOptions(this.defaultCountry, this.defaultLanguage);
+    const mergedOptions = this.mergeEndpointOptions(defaultOptions, options);
+    const rawResponse = await this.get<HealthboxRawResponse<SearchFullTextRawRecord>>('/search/fulltext', {
+      params: SearchFullText.buildSearchParams(text, mergedOptions),
     });
 
-    return mapResponse(rawResponse);
+    return {
+      results: SearchFullText.mapResponse(rawResponse.result),
+      totalCount: rawResponse.total_results,
+    };
   }
 
-  searchAlerts(): Promise<any> {
-    throw new Error('Not implemented!');
+  async searchAlerts(
+    text: string,
+    options: SearchAlertsOptions = {}
+  ): Promise<HealthboxResponse<SearchAlertsRecord>> {
+    const defaultOptions = SearchAlerts.getDefaultOptions(this.defaultCountry, this.defaultLanguage);
+    const mergedOptions = this.mergeEndpointOptions(defaultOptions, options);
+    const rawResponse = await this.get<HealthboxRawResponse<SearchAlertsRawRecord>>('/search/alerts', {
+      params: SearchAlerts.buildSearchParams(text, mergedOptions),
+    });
+
+    return {
+      results: SearchAlerts.mapResponse(rawResponse.result),
+      totalCount: rawResponse.total_results,
+    };
   }
 
-  searchUpdatedDocuments(): Promise<any> {
-    throw new Error('Not implemented!');
+  async searchUpdatedDocuments(
+    startDate: Date,
+    options: SearchUpdatedDocumentsOptions = {}
+  ): Promise<HealthboxResponse<SearchUpdatedDocumentsRecord>> {
+    const defaultOptions = SearchUpdatedDocuments.getDefaultOptions(
+      this.defaultCountry,
+      this.defaultLanguage
+    );
+    const mergedOptions = this.mergeEndpointOptions(defaultOptions, options);
+    const rawResponse = await this.get<HealthboxRawResponse<SearchUpdatedDocumentsRawRecord>>(
+      '/search/updatedDocuments',
+      { params: SearchUpdatedDocuments.buildSearchParams(startDate, mergedOptions) }
+    );
+
+    return {
+      results: SearchUpdatedDocuments.mapResponse(rawResponse.result),
+      totalCount: rawResponse.total_results,
+    };
   }
 
-  getProductInfo(): Promise<any> {
-    throw new Error('Not implemented!');
+  async getProductInfo(productId: string): Promise<HealthboxResponse<GetProductInfoRecord>> {
+    const rawResponse = await this.get<HealthboxRawResponse<GetProductInfoRawRecord>>('/product/info', {
+      params: { product_id: productId },
+    });
+
+    return {
+      results: GetProductInfo.mapResponse(rawResponse.result),
+      totalCount: rawResponse.total_results,
+    };
   }
 
-  getProductDocuments(): Promise<any> {
-    throw new Error('Not implemented!');
+  async getProductDocuments(nmanCode: string): Promise<HealthboxResponse<GetProductDocumentsRecord>> {
+    const rawResponse = await this.get<HealthboxRawResponse<GetProductDocumentsRawRecord>>(
+      '/product/documents',
+      { params: { nman_code: nmanCode } }
+    );
+
+    return {
+      results: GetProductDocuments.mapResponse(rawResponse.result),
+      totalCount: rawResponse.total_results,
+    };
   }
 
-  getDocumentUrl(): Promise<any> {
-    throw new Error('Not implemented!');
+  async getDocumentUrl(documentId: number): Promise<string> {
+    const rawResponse = await this.get<{result: string}>('/document/getUrl', {
+       params: { document_id: documentId }
+    });
+
+    return rawResponse.result;
   }
 
   private async get<T>(endpoint: string, options?: HealthboxRequestOptions): Promise<T> {
     try {
       const response = await this.client.get<T>(endpoint, options);
+      console.log('RAW RES', response);
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
