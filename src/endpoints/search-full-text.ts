@@ -34,7 +34,7 @@ export class SearchFullText extends BaseEndpoint {
       countryCode: record.countryCode,
       dosage: record.dosage,
       languageCode: record.languageCode,
-      manufacturer: record.mah,
+      mah: record.mah,
       name: record.name,
       pharmaceuticalForm: record.pharmaceutical_form,
       productId: record.product_id,
@@ -73,7 +73,7 @@ export type SearchFullTextRecord = {
   countryCode: string;
   dosage: string;
   languageCode: string;
-  manufacturer: string;
+  mah: string;
   name: string;
   pharmaceuticalForm: string;
   productId: string;

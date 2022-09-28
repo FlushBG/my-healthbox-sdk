@@ -1,5 +1,13 @@
 import axios, { AxiosInstance } from 'axios';
 import {
+  HealthboxConfig,
+  HealthboxCountry,
+  HealthboxLanguage,
+  HealthboxRawResponse,
+  HealthboxRequestOptions,
+  HealthboxResponse,
+} from './types';
+import {
   SearchFullText,
   SearchFullTextOptions,
   SearchFullTextRawRecord,
@@ -17,14 +25,12 @@ import {
   SearchUpdatedDocumentsRawRecord,
   SearchUpdatedDocumentsRecord,
 } from './endpoints/search-updated-documents';
+import { GetProductInfo, GetProductInfoRawRecord, GetProductInfoRecord } from './endpoints/get-product-info';
 import {
-  HealthboxConfig,
-  HealthboxCountry,
-  HealthboxLanguage,
-  HealthboxRawResponse,
-  HealthboxRequestOptions,
-  HealthboxResponse,
-} from './types';
+  GetProductDocuments,
+  GetProductDocumentsRawRecord,
+  GetProductDocumentsRecord,
+} from './endpoints/get-product-documents';
 
 export class HealthboxClient {
   private client: AxiosInstance;
@@ -89,9 +95,7 @@ export class HealthboxClient {
     const mergedOptions = this.mergeEndpointOptions(defaultOptions, options);
     const rawResponse = await this.get<HealthboxRawResponse<SearchUpdatedDocumentsRawRecord>>(
       '/search/updatedDocuments',
-      {
-        params: SearchUpdatedDocuments.buildSearchParams(startDate, mergedOptions),
-      }
+      { params: SearchUpdatedDocuments.buildSearchParams(startDate, mergedOptions) }
     );
 
     return {
@@ -100,16 +104,35 @@ export class HealthboxClient {
     };
   }
 
-  getProductInfo(): Promise<any> {
-    throw new Error('Not implemented!');
+  async getProductInfo(productId: string): Promise<HealthboxResponse<GetProductInfoRecord>> {
+    const rawResponse = await this.get<HealthboxRawResponse<GetProductInfoRawRecord>>('/product/info', {
+      params: { product_id: productId },
+    });
+
+    return {
+      results: GetProductInfo.mapResponse(rawResponse.result),
+      totalCount: rawResponse.total_results,
+    };
   }
 
-  getProductDocuments(): Promise<any> {
-    throw new Error('Not implemented!');
+  async getProductDocuments(nmanCode: string): Promise<HealthboxResponse<GetProductDocumentsRecord>> {
+    const rawResponse = await this.get<HealthboxRawResponse<GetProductDocumentsRawRecord>>(
+      '/product/documents',
+      { params: { nman_code: nmanCode } }
+    );
+
+    return {
+      results: GetProductDocuments.mapResponse(rawResponse.result),
+      totalCount: rawResponse.total_results,
+    };
   }
 
-  getDocumentUrl(): Promise<any> {
-    throw new Error('Not implemented!');
+  async getDocumentUrl(documentId: number): Promise<string> {
+    const rawResponse = await this.get<{result: string}>('/document/getUrl', {
+       params: { document_id: documentId }
+    });
+
+    return rawResponse.result;
   }
 
   private async get<T>(endpoint: string, options?: HealthboxRequestOptions): Promise<T> {
