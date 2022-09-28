@@ -1,10 +1,10 @@
 import axios, { AxiosInstance } from 'axios';
 import {
-  FullTextSearch,
-  FullTextSearchOptions,
-  FullTextSearchRawRecord,
-  FullTextSearchRecord,
-} from './endpoints/full-text-search';
+  SearchFullText,
+  SearchFullTextOptions,
+  SearchFullTextRawRecord,
+  SearchFullTextRecord,
+} from './endpoints/search-full-text';
 import {
   SearchAlerts,
   SearchAlertsOptions,
@@ -46,18 +46,18 @@ export class HealthboxClient {
     });
   }
 
-  async fullTextSearch(
+  async searchFullText(
     text: string,
-    options: FullTextSearchOptions = {}
-  ): Promise<HealthboxResponse<FullTextSearchRecord>> {
-    const defaultOptions = FullTextSearch.getDefaultOptions(this.defaultCountry, this.defaultLanguage);
+    options: SearchFullTextOptions = {}
+  ): Promise<HealthboxResponse<SearchFullTextRecord>> {
+    const defaultOptions = SearchFullText.getDefaultOptions(this.defaultCountry, this.defaultLanguage);
     const mergedOptions = this.mergeEndpointOptions(defaultOptions, options);
-    const rawResponse = await this.get<HealthboxRawResponse<FullTextSearchRawRecord>>('/search/fulltext', {
-      params: FullTextSearch.buildSearchParams(text, mergedOptions),
+    const rawResponse = await this.get<HealthboxRawResponse<SearchFullTextRawRecord>>('/search/fulltext', {
+      params: SearchFullText.buildSearchParams(text, mergedOptions),
     });
 
     return {
-      results: FullTextSearch.mapResponse(rawResponse.result),
+      results: SearchFullText.mapResponse(rawResponse.result),
       totalCount: rawResponse.total_results,
     };
   }

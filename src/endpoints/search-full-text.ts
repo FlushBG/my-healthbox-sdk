@@ -9,9 +9,9 @@ import {
 } from '../types';
 import { BaseEndpoint } from './base-endpoint';
 
-export class FullTextSearch extends BaseEndpoint {
-  static buildSearchParams(text: string, options: FullTextSearchOptions): FullTextSearchParams {
-    const params: FullTextSearchParams = {
+export class SearchFullText extends BaseEndpoint {
+  static buildSearchParams(text: string, options: SearchFullTextOptions): SearchFullTextParams {
+    const params: SearchFullTextParams = {
       q: text,
       c: options.country,
       l: options.language,
@@ -27,8 +27,8 @@ export class FullTextSearch extends BaseEndpoint {
     return params;
   }
 
-  static mapResponse(input: FullTextSearchRawRecord[]): FullTextSearchRecord[] {
-    return input.map((record: FullTextSearchRawRecord) => ({
+  static mapResponse(input: SearchFullTextRawRecord[]): SearchFullTextRecord[] {
+    return input.map((record: SearchFullTextRawRecord) => ({
       activeIngredient: record.active_ingredient,
       commercialName: record.commercial_name,
       countryCode: record.countryCode,
@@ -42,20 +42,20 @@ export class FullTextSearch extends BaseEndpoint {
   }
 }
 
-export enum FullTextSearchFieldRestriction {
+export enum SearchFullTextFieldRestriction {
   Name = 'name',
   ActiveIngredient = 'active_ingredient',
   Barcode = 'barcode',
   AtcCode = 'atc_code',
 }
 
-export type FullTextSearchOptions = LocaleOptions &
+export type SearchFullTextOptions = LocaleOptions &
   PaginationOptions &
-  RestrictToFieldOptions<FullTextSearchFieldRestriction>;
+  RestrictToFieldOptions<SearchFullTextFieldRestriction>;
 
-export type FullTextSearchParams = TextParam & LocaleParams & PaginationParams & RestrictToFieldParam;
+export type SearchFullTextParams = TextParam & LocaleParams & PaginationParams & RestrictToFieldParam;
 
-export type FullTextSearchRawRecord = {
+export type SearchFullTextRawRecord = {
   active_ingredient: string;
   commercial_name: string;
   countryCode: string;
@@ -67,7 +67,7 @@ export type FullTextSearchRawRecord = {
   product_id: string;
 };
 
-export type FullTextSearchRecord = {
+export type SearchFullTextRecord = {
   activeIngredient: string;
   commercialName: string;
   countryCode: string;
