@@ -1,6 +1,6 @@
 input: ./docs
 output: .retype
-url: # Add your website address here
+url: https://flushbg.github.io/myhealthbox-sdk
 branding:
   title: myHealthbox SDK
   #label: Docs
