@@ -43,12 +43,12 @@ Searches the database by text for alerts, related to a product. The information 
 | Name | Type | Required | Description { class="compact" }
 | | :---: | :---: |
 | **text** | string | :icon-check: | The text search query
-| **options** | SearchAlertsOptions | :icon-x: | Defaults to an empty object
+| **options** | [SearchAlertsOptions](../sdk-reference/search-alerts-types/#searchalertsoptions) | :icon-x: | Defaults to an empty object
 
 ### returns
 | Name | Type | Description { class="compact" }
 | | :---: | :---: 
-| **results** | SearchAlertsRecord[] | Records returned from the endpoint
+| **results** | [SearchAlertsRecord[]](../sdk-reference/search-alerts-types/#searchalertsrecord) | Records returned from the endpoint
 | **totalCount** | number | The total result count
 
 ### example
@@ -69,12 +69,12 @@ Searches the database for any updates to documents, occured after a given date o
 | Name | Type | Required | Description { class="compact" }
 | | :---: | :---: |
 | **startDate** | Date | :icon-check: | The date after which to look for document update occurances
-| **options** | SearchUpdatedDocumentsOptions | :icon-x: | Defaults to an empty object
+| **options** | [SearchUpdatedDocumentsOptions](../sdk-reference/search-updated-documents-types/#searchupdateddocumentsoptions) | :icon-x: | Defaults to an empty object
 
 ### returns
 | Name | Type | Description { class="compact" }
 | | :---: | :---: 
-| **results** | SearchUpdatedDocumentsRecord[] | Records returned from the endpoint
+| **results** | [SearchUpdatedDocumentsRecord[]](../sdk-reference/search-updated-documents-types/#searchupdateddocumentsrecord) | Records returned from the endpoint
 | **totalCount** | number | The total result count
 
 ### example
@@ -104,7 +104,7 @@ Gets detailed information on a specific medical product. Wrapper for the `/produ
 ### returns
 | Name | Type | Description { class="compact" }
 | | :---: | :---: 
-| **results** | GetProductInfoRecord[] | Records returned from the endpoint
+| **results** | [GetProductInfoRecord[]](../sdk-reference/get-product-info-types/#getproductinforecord) | Records returned from the endpoint
 | **totalCount** | number | The total result count
 
 ### example

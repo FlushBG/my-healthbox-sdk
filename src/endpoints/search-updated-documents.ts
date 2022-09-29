@@ -41,7 +41,7 @@ export class SearchUpdatedDocuments extends BaseEndpoint {
       documentId: record.document_id,
       languageCode: record.language_code,
       leafletTypeCode: record.leafletTypeCode,
-      manufacturer: record.mah,
+      mah: record.mah,
       mimeType: record.mime_type,
       nmanCode: record.nman_code,
       source: record.source,
@@ -99,7 +99,7 @@ export type SearchUpdatedDocumentsRecord = {
   languageCode: string;
   updatedOn: Date;
   leafletTypeCode: string;
-  manufacturer: string;
+  mah: string;
   mimeType: string;
   nmanCode: string;
   source: string;

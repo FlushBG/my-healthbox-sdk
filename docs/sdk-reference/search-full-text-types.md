@@ -1,6 +1,7 @@
 ---
-icon: code
+icon: file-code
 order: 60
+label: searchFullText
 ---
 
 # searchFullText Types
@@ -9,7 +10,7 @@ Types and enums related to the [searchFullText](/endpoints/#searchfulltext) endp
 
 ### SearchFullTextFieldRestriction
 
-[!badge variant="success" text="Enum"] An enum of fields that the `searchFullText` endpoint can be restricted to.
+[!badge variant="success" text="Enum"] An enum of fields that the [searchFullText](/endpoints/#searchfulltext) endpoint can be restricted to.
 
 | Key | Value { class="compact"}
 | | :---:
@@ -19,7 +20,7 @@ Types and enums related to the [searchFullText](/endpoints/#searchfulltext) endp
 | **AtcCode** | [!badge variant="ghost" text="atc_code"]
 
 ### SearchFullTextOptions 
-[!badge text="Type"] Options for configuring the `searchFullText` endpoint. Consists of [LocaleOptions](../general-types/#localeoptions), [PaginationOptions](../general-types/#paginationoptions) and [RestrictToFieldOptions](../general-types/#restricttofieldoptionst)<[SearchFullTextFieldRestriction](#searchfulltextfieldrestriction)>
+[!badge text="Type"] Options for configuring the [searchFullText](/endpoints/#searchfulltext) endpoint. Consists of [LocaleOptions](../general-types/#localeoptions), [PaginationOptions](../general-types/#paginationoptions) and [RestrictToFieldOptions](../general-types/#restricttofieldoptionst)<[SearchFullTextFieldRestriction](#searchfulltextfieldrestriction)>
 
 | Name | Type | Required | Default { class="compact" }
 | | :---: | :---: 
@@ -30,7 +31,7 @@ Types and enums related to the [searchFullText](/endpoints/#searchfulltext) endp
 | **restrictToField** | [SearchFullTextFieldRestriction](#searchfulltextfieldrestriction) | :icon-x: | undefined
 
 ### SearchFullTextRecord 
-[!badge text="Type"] Model of a single data record that the `searchFullText` responds with. The endpoint will return an array of those.
+[!badge text="Type"] Model of a single data record that the [searchFullText](/endpoints/#searchfulltext) endpoint responds with. The endpoint will return an array of those.
 
 | Name | Type   { class="compact" }
 | | :---: |
