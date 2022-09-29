@@ -1,6 +1,6 @@
 # Endpoints
 
-**myHealthbox SDK** exposes several methods that wrap endpoints from the official API. Each of them can be configured with an user-friendly `options` object, that internally transforms the parameters to a query, readable by the API. You can view the type details in the API Reference section. 
+**myHealthbox SDK** exposes several methods that wrap endpoints from the official API. Some of them can be configured with an user-friendly `options` object, that internally transforms the parameters to a query, readable by the API. You can view the type details in the API Reference section. 
 
 ## searchFullText
 
@@ -10,12 +10,12 @@ Allows the user to query medical products in the myHealthbox API using a string 
 | Name | Type | Required | Description { class="compact" }
 | | :---: | :---: |
 | **text** | string | :icon-check: | The text search query
-| **options** | SearchFullTextOptions | :icon-x: | Defaults to an empty object
+| **options** | [SearchFullTextOptions](../sdk-reference/search-full-text-types/#searchfulltextoptions) | :icon-x: | Defaults to an empty object
 
 ### returns
 | Name | Type | Description { class="compact" }
 | | :---: | :---: 
-| **results** | SearchFullTextRecord[] | Records returned from the endpoint
+| **results** | [SearchFullTextRecord[]](../sdk-reference/search-full-text-types/#searchfulltextrecord) | Records returned from the endpoint
 | **totalCount** | number | The total result count
 
 ### example
