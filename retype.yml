@@ -1,0 +1,14 @@
+input: ./docs
+output: .retype
+url: # Add your website address here
+branding:
+  title: myHealthbox SDK
+  #label: Docs
+  logo: static/logo.png
+footer:
+  copyright: "&copy; Copyright {{ year }}. All rights reserved."
+favicon: static/logo.png
+meta:
+  title: " | myHealthbox SDK Docs"
+editor: 
+  enabled: false
