@@ -41,7 +41,7 @@ export class SearchUpdatedDocuments extends BaseEndpoint {
       documentId: record.document_id,
       languageCode: record.language_code,
       leafletTypeCode: record.leafletTypeCode,
-      manufacturer: record.mah,
+      mah: record.mah,
       mimeType: record.mime_type,
       nmanCode: record.nman_code,
       source: record.source,
@@ -54,7 +54,7 @@ export enum SearchUpdatedDocumentsFieldRestriction {
   LastUpdate = 'last_update',
 }
 
-export enum DocumentType {
+export enum SearchUpdatedDocumentType {
   PatientInformationLeaflet = 'pil',
   SummaryOfProductCharacteristics = 'spc',
   PublicAssessmentReport = 'par',
@@ -69,7 +69,7 @@ export type SearchUpdatedDocumentsOptions = LocaleOptions &
   PaginationOptions &
   RestrictToFieldOptions<SearchUpdatedDocumentsFieldRestriction> & {
     endDate?: Date;
-    documentType?: DocumentType;
+    documentType?: SearchUpdatedDocumentType;
   };
 
 export type SearchUpdatedDocumentsParams = LocaleParams &
@@ -82,7 +82,7 @@ export type SearchUpdatedDocumentsParams = LocaleParams &
 
 export type SearchUpdatedDocumentsRawRecord = {
   commercial_name: string;
-  document_id: number;
+  document_id: string;
   language_code: string;
   lastUpdate: string;
   lastUpdated: string;
@@ -95,11 +95,11 @@ export type SearchUpdatedDocumentsRawRecord = {
 
 export type SearchUpdatedDocumentsRecord = {
   commercialName: string;
-  documentId: number;
+  documentId: string;
   languageCode: string;
   updatedOn: Date;
   leafletTypeCode: string;
-  manufacturer: string;
+  mah: string;
   mimeType: string;
   nmanCode: string;
   source: string;

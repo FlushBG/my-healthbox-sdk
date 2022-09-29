@@ -127,12 +127,12 @@ export class HealthboxClient {
     };
   }
 
-  async getDocumentUrl(documentId: number): Promise<string> {
-    const rawResponse = await this.get<{result: string}>('/document/getUrl', {
+  async getDocumentUrl(documentId: string): Promise<{ result: string }> {
+    const { result } = await this.get<{result: string}>('/document/getUrl', {
        params: { document_id: documentId }
     });
 
-    return rawResponse.result;
+    return { result };
   }
 
   private async get<T>(endpoint: string, options?: HealthboxRequestOptions): Promise<T> {

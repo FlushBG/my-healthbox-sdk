@@ -1,6 +1,5 @@
 export type HealthboxConfig = {
   apiKey: string;
-  apiHost?: string;
   defaultCountry?: HealthboxCountry;
   defaultLanguage?: HealthboxLanguage;
 };

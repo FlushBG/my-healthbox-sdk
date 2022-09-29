@@ -1,0 +1,31 @@
+input: ./docs
+output: .retype
+url: # Add your website address here
+branding:
+  title: myHealthbox SDK
+  #label: Docs
+  logo: static/logo.png
+links: 
+- text: myHealthbox API
+  target: blank
+  link: https://rapidapi.com/roblat/api/myhealthbox
+  icon: cpu
+- text: API Demo
+  target: blank
+  link: https://myhealthbox.eu
+  icon: codescan-checkmark
+- text: GitHub
+  target: blank
+  link: https://github.com/FlushBG/myhealthbox-sdk
+  icon: mark-github
+- text: Issues
+  target: blank
+  link: https://github.com/FlushBG/myhealthbox-sdk/issues
+  icon: issue-opened
+footer:
+  copyright: "&copy; Copyright {{ year }}. All rights reserved."
+favicon: static/logo.png
+meta:
+  title: " | myHealthbox SDK Docs"
+editor: 
+  enabled: false
