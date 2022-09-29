@@ -1,3 +1,9 @@
+---
+icon: link
+order: 2000
+expanded: true
+---
+
 # Endpoints
 
 **myHealthbox SDK** exposes several methods that wrap endpoints from the official API. Some of them can be configured with an user-friendly `options` object, that internally transforms the parameters to a query, readable by the API. You can view the type details in the API Reference section. 
