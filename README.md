@@ -2,6 +2,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
+<div></div>
 <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 15px">
    <img src="docs/static/logo.png" alt="myHealthbox Logo" width="65"/>
    <div style="color: #2d4734; font-family: Poppins; font-weight: 600; font-size: 32px; margin-left: 5px">myHealthbox SDK</div>
