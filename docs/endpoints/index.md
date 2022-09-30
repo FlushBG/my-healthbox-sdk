@@ -124,7 +124,7 @@ Gets all documents, associated with a specific medical product. Wrapper for the 
 ### returns
 | Name | Type | Description { class="compact" }
 | | :---: | :---: 
-| **results** | GetProductDocumentsRecord[] | Records returned from the endpoint
+| **results** | [GetProductDocumentsRecord[]](../sdk-reference/get-product-documents-types/#getproductdocumentsrecord) | Records returned from the endpoint
 | **totalCount** | number | The total result count
 
 ### example
