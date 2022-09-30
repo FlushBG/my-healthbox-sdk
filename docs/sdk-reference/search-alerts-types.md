@@ -9,12 +9,12 @@ label: searchAlerts
 Types related to the [searchAlerts](../endpoints/#searchalerts) endpoint.
 
 ### SearchAlertsOptions 
-[!badge text="Type"] Options for configuring the [searchAlerts](../endpoints/#searchalerts) endpoint. Consists of [LocaleOptions](../general-types/#localeoptions) and [PaginationOptions](../general-types/#paginationoptions)
+[!badge text="Type"] Options for configuring the [searchAlerts](../endpoints/#searchalerts) endpoint. Consists of [LocaleOptions](./general-types/#localeoptions) and [PaginationOptions](./general-types/#paginationoptions)
 
 | Name | Type | Required | Default { class="compact" }
 | | :---: | :---: 
-| **country** | [HealthboxCountry](../general-types/#healthboxcountry) | :icon-x: | Value from client configuration
-| **language** | [HealthboxLanguage](../general-types/#healthboxlanguage) | :icon-x: | Value from client configuration
+| **country** | [HealthboxCountry](./general-types/#healthboxcountry) | :icon-x: | Value from client configuration
+| **language** | [HealthboxLanguage](./general-types/#healthboxlanguage) | :icon-x: | Value from client configuration
 | **limit** | number | :icon-x: | 32
 | **from** | number | :icon-x: | 0
 

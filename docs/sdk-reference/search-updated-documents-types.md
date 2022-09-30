@@ -6,11 +6,11 @@ label: searchUpdatedDocuments
 
 # searchUpdatedDocuments Types
 
-Types and enums related to the [searchUpdatedDocuments](/endpoints/#searchupdateddocuments) endpoint.
+Types and enums related to the [searchUpdatedDocuments](../endpoints/#searchupdateddocuments) endpoint.
 
 ### SearchUpdatedDocumentsFieldRestriction
 
-[!badge variant="success" text="Enum"] An enum of fields that the [searchUpdatedDocuments](/endpoints/#searchupdateddocuments) endpoint can be restricted to.
+[!badge variant="success" text="Enum"] An enum of fields that the [searchUpdatedDocuments](../endpoints/#searchupdateddocuments) endpoint can be restricted to.
 
 | Key | Value { class="compact"}
 | | :---:
@@ -18,7 +18,7 @@ Types and enums related to the [searchUpdatedDocuments](/endpoints/#searchupdate
 
 ### SearchUpdatedDocumentType
 
-[!badge variant="success" text="Enum"] An enum of types of documents that you can query the [searchUpdatedDocuments](/endpoints/#searchupdateddocuments) endpoint with.
+[!badge variant="success" text="Enum"] An enum of types of documents that you can query the [searchUpdatedDocuments](../endpoints/#searchupdateddocuments) endpoint with.
 
 | Key | Value { class="compact"}
 | | :---:
@@ -32,20 +32,20 @@ Types and enums related to the [searchUpdatedDocuments](/endpoints/#searchupdate
 | **HealthTechnologyAssessmentReport** | [!badge variant="ghost" text="hta"]
 
 ### SearchUpdatedDocumentsOptions 
-[!badge text="Type"] Options for configuring the [searchUpdatedDocuments](/endpoints/#searchupdateddocuments) endpoint. Consists of [LocaleOptions](../general-types/#localeoptions), [PaginationOptions](../general-types/#paginationoptions), [RestrictToFieldOptions](../general-types/#restricttofieldoptionst)<[SearchUpdatedDocumentsFieldRestriction](#searchupdateddocumentsfieldrestriction)> and some extra properties.
+[!badge text="Type"] Options for configuring the [searchUpdatedDocuments](../endpoints/#searchupdateddocuments) endpoint. Consists of [LocaleOptions](./general-types/#localeoptions), [PaginationOptions](./general-types/#paginationoptions), [RestrictToFieldOptions](./general-types/#restricttofieldoptionst)<[SearchUpdatedDocumentsFieldRestriction](#searchupdateddocumentsfieldrestriction)> and some extra properties.
 
 | Name | Type | Required | Default { class="compact" }
 | | :---: | :---: 
-| **country** | [HealthboxCountry](../general-types/#healthboxcountry) | :icon-x: | Value from client configuration
-| **language** | [HealthboxLanguage](../general-types/#healthboxlanguage) | :icon-x: | Value from client configuration
+| **country** | [HealthboxCountry](./general-types/#healthboxcountry) | :icon-x: | Value from client configuration
+| **language** | [HealthboxLanguage](./general-types/#healthboxlanguage) | :icon-x: | Value from client configuration
 | **limit** | number | :icon-x: | 32
 | **from** | number | :icon-x: | 0
 | **restrictToField** | [SearchUpdatedDocumentsFieldRestriction](#searchupdateddocumentsfieldrestriction) | :icon-x: | undefined
-| **documentType** | [SearchUpdatedDocumentType](./#searchupdateddocumenttype) | :icon-x: | undefined
+| **documentType** | [SearchUpdatedDocumentType](#searchupdateddocumenttype) | :icon-x: | undefined
 | **endDate** | Date | :icon-x: | undefined
 
 ### SearchUpdatedDocumentsRecord 
-[!badge text="Type"] Model of a single data record that the [searchUpdatedDocuments](/endpoints/#searchupdateddocuments) endpoint responds with. The endpoint will return an array of those.
+[!badge text="Type"] Model of a single data record that the [searchUpdatedDocuments](../endpoints/#searchupdateddocuments) endpoint responds with. The endpoint will return an array of those.
 
 | Name | Type   { class="compact" }
 | | :---: |
