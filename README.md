@@ -1,6 +1,11 @@
-<p align="center">
-   <img src="docs/static/logo_full.png" alt="myHealthbox Logo" width="400"/>
-</p>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<div style="display: flex; justify-content: center; align-items: center; margin-bottom: 15px">
+   <img src="docs/static/logo.png" alt="myHealthbox Logo" width="65"/>
+   <div style="color: #2d4734; font-family: Poppins; font-weight: 600; font-size: 32px; margin-left: 5px">myHealthbox SDK</div>
+</div>
 <p align="center">An SDK built on top of the <a href="https://rapidapi.com/roblat/api/myhealthbox/" target="_blank">myHealthbox API</a>, exposing methods for using and accessing the API.
 </p>
 
