@@ -17,3 +17,7 @@ This SDK is an unofficial open-source tool. It is not developed or backed by **m
 ## Getting started
 
 To check out the <a href="https://flushbg.github.io/myhealthbox-sdk">docs</a>, visit https://flushbg.github.io/myhealthbox-sdk.
+
+## License 
+
+**myHealthbox SDK** is licensed under the [MIT license](LICENSE).
