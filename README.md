@@ -1,6 +1,6 @@
-<div style="display: flex; justify-content: center; align-items: center; margin-bottom: 15px">
+<p align="center">
    <img src="docs/static/logo_full.png" alt="myHealthbox Logo" width="365"/>
-</div>
+</p>
 <p align="center">An SDK built on top of the <a href="https://rapidapi.com/roblat/api/myhealthbox/" target="_blank">myHealthbox API</a>, exposing methods for using and accessing the API.
 </p>
 
