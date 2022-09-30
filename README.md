@@ -33,8 +33,7 @@
 
 <div class="container">
 <div class="logo">
-   <img src="docs/static/logo.png" alt="myHealthbox Logo" width="55" />
-   <h1>myHealthbox SDK</h1> 
+   <img src="docs/static/logo_full.png" alt="myHealthbox Logo" width="400"/>
 </div>
 <p align="center">An SDK built on top of the <a href="https://rapidapi.com/roblat/api/myhealthbox/" target="_blank">myHealthbox API</a>, exposing methods for using and accessing the API.
 </p>
