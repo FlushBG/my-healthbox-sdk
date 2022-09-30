@@ -1,31 +1,3 @@
-<style>
-   .container {
-      font-familiy: Poppins;
-      color: #2d4734;  
-   }
-   .container p {
-      margin-bottom: 30px;
-   }
-   .container h1, .container h2 {
-      margin: 0;
-      padding: 0
-   }
-   .container h1 {
-      font-size: 32px;
-   }
-   .container h2 {
-      font-size: 24px;
-      margin: 15px 0;
-   }
-   .container .logo {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 10px;
-   }
-</style>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
