@@ -1,7 +1,7 @@
 {
-  "name": "my-healthbox-sdk",
+  "name": "@flushbg/myhealthbox-sdk",
   "version": "1.0.0",
-  "description": "An SDK to access and use myHealthbox API",
+  "description": "An set of methods to ease access and usage of myHealthbox SDK",
   "main": "dist/index.js",
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
@@ -28,7 +28,7 @@
     "medicine",
     "api"
   ],
-  "author": "Angel Angelov",
+  "author": "Angel Angelov (flushbg@gmail.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/FlushBG/my-healthbox-sdk/issues"
