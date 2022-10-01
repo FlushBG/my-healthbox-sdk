@@ -1,6 +1,6 @@
 {
   "name": "@flushbg/myhealthbox-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An set of methods to ease access and usage of myHealthbox SDK",
   "main": "dist/index.js",
   "module": "dist/index.module.js",
