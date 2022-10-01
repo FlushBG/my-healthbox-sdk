@@ -38,7 +38,7 @@ export class HealthboxClient {
   private defaultLanguage: HealthboxLanguage;
 
   constructor(config: HealthboxConfig) {
-    const { apiKey, apiHost, defaultCountry, defaultLanguage } = config;
+    const { apiKey, defaultCountry, defaultLanguage } = config;
 
     this.defaultCountry = defaultCountry || HealthboxCountry.USA;
     this.defaultLanguage = defaultLanguage || HealthboxLanguage.English;
@@ -47,7 +47,7 @@ export class HealthboxClient {
       headers: {
         'Content-Type': 'application/json',
         'X-RapidAPI-Key': apiKey,
-        'X-RapidAPI-Host': apiHost || 'myhealthbox.p.rapidapi.com',
+        'X-RapidAPI-Host': 'myhealthbox.p.rapidapi.com',
       },
     });
   }
