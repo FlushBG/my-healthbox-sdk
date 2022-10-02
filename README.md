@@ -5,8 +5,10 @@
 </p>
 <p align="center">
 <img alt="Build status" src="https://img.shields.io/github/workflow/status/flushbg/myhealthbox-sdk/Build%20and%20publish%20to%20NPM">
-<img alt="npm (scoped)" src="https://img.shields.io/npm/v/@flushbg/myhealthbox-sdk">
+<a href="https://www.npmjs.com/package/@flushbg/myhealthbox-sdk">
+<img alt="npm (scoped)" src="https://img.shields.io/npm/v/@flushbg/myhealthbox-sdk"></a>
 <a href="https://github.com/FlushBG/myhealthbox-sdk/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/FlushBG/myhealthbox-sdk"></a>
+<a href="https://openbase.com/js/@flushbg/myhealthbox-sdk?utm_source=embedded&amp;utm_medium=badge&amp;utm_campaign=rate-badge"><img src="https://badges.openbase.com/js/featured/@flushbg/myhealthbox-sdk.svg?token=xpa3Auuiu3exY9zSVOYkg6n8BCyilpB9VOC/BHPQtyE=" alt="Openbase"/></a>
 <a href="https://buymeacoffee.com/flushbg"><img src="https://img.shields.io/badge/-buy_me_a%C2%A0coffee-gray?logo=buy-me-a-coffee"  alt="Buy me a coffee" /></a>
 </p>
 
