@@ -7,7 +7,7 @@
 <img alt="Build status" src="https://img.shields.io/github/workflow/status/flushbg/myhealthbox-sdk/Build%20and%20publish%20to%20NPM">
 <img alt="npm (scoped)" src="https://img.shields.io/npm/v/@flushbg/myhealthbox-sdk">
 <a href="https://github.com/FlushBG/myhealthbox-sdk/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/FlushBG/myhealthbox-sdk"></a>
-<a href="https://buymeacoffee.com/flushbg"><img src="https://img.shields.io/badge/-buy_me_a%C2%A0coffee-gray?logo=buy-me-a-coffee"  alt="Buy me a coffee" />
+<a href="https://buymeacoffee.com/flushbg"><img src="https://img.shields.io/badge/-buy_me_a%C2%A0coffee-gray?logo=buy-me-a-coffee"  alt="Buy me a coffee" /></a>
 </p>
 
 ## Disclaimer
