@@ -1,8 +1,9 @@
 {
    "preset": "ts-jest",
    "coverageDirectory": "coverage",
+   "collectCoverageFrom": ["<rootDir>/src/**/*.ts"], 
+   "coveragePathIgnorePatterns": ["/node_modules/", "/test/"],
    "testMatch": ["**.spec.ts"],
    "resetMocks": true,
-   "clearMocks": true,
-   "rootDir": "test"
+   "clearMocks": true
 }

@@ -1,11 +1,8 @@
 import MockAdapter from 'axios-mock-adapter';
-import { HealthboxClient, HealthboxConfig, HealthboxCountry, HealthboxLanguage, SearchFullTextFieldRestriction, SearchFullTextParams } from '../src';
+import { HealthboxClient, HealthboxCountry, HealthboxLanguage } from '../src';
+import { DEFAULT_CONFIG } from './mocks/general';
 
-const DEFAULT_CONFIG: HealthboxConfig = {
-  apiKey: 'test_api_key',
-};
-
-describe('Client tests', () => {
+describe('base client tests', () => {
   it('should set default config values if they are not passed', () => {
     const sdk = new HealthboxClient(DEFAULT_CONFIG);
 
@@ -34,30 +31,5 @@ describe('Client tests', () => {
 
     expect(lastRequest.headers).toBeDefined();
     expect(lastRequest.headers?.['X-RapidAPI-Key']).toEqual('test_api_key');
-  });
-
-  it('should map searchFullText options properly', async () => {
-    const sdk = new HealthboxClient(DEFAULT_CONFIG);
-    const adapter = new MockAdapter(sdk['client']);
-    const expectedParams: SearchFullTextParams = {
-      q: 'test_value',
-      c: HealthboxCountry.Bulgaria,
-      l: HealthboxLanguage.Bulgarian,
-      f: SearchFullTextFieldRestriction.Barcode,
-      limit: 50,
-      from: 1,
-    };
-    
-    adapter.onGet('/search/fulltext').reply(200, { result: [], total_results: 0 });
-    await sdk.searchFullText('test_value', {
-      country: HealthboxCountry.Bulgaria,
-      language: HealthboxLanguage.Bulgarian,
-      restrictToField: SearchFullTextFieldRestriction.Barcode,
-      limit: 50,
-      from: 1
-    });
-
-    const lastRequest = adapter.history.get[0];
-    expect(lastRequest.params).toEqual(expectedParams);
   });
 });

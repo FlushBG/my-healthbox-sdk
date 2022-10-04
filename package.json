@@ -12,7 +12,8 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "microbundle --tsconfig tsconfig.json --no-sourcemap",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
