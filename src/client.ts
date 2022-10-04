@@ -138,7 +138,6 @@ export class HealthboxClient {
   private async get<T>(endpoint: string, options?: HealthboxRequestOptions): Promise<T> {
     try {
       const response = await this.client.get<T>(endpoint, options);
-      console.log('RAW RES', response);
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
