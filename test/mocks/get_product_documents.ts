@@ -1,9 +1,9 @@
 import moment from 'moment';
-import { HealthboxLanguage, HealthboxRawResponse, HealthboxResponse } from '../../src';
 import {
   GetProductDocumentsRawRecord,
   GetProductDocumentsRecord,
 } from '../../src/endpoints/get-product-documents';
+import { HealthboxLanguage, HealthboxRawResponse, HealthboxResponse } from '../../src/types';
 
 export const GET_PRODUCT_DOCUMENTS_MOCK_RAW_RESPONSE: HealthboxRawResponse<GetProductDocumentsRawRecord> = {
   result: [

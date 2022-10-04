@@ -1,16 +1,18 @@
 import moment from 'moment';
 import {
-  HealthboxCountry,
-  HealthboxLanguage,
-  HealthboxRawResponse,
-  HealthboxResponse,
   SearchUpdatedDocumentsFieldRestriction,
   SearchUpdatedDocumentsOptions,
   SearchUpdatedDocumentsParams,
   SearchUpdatedDocumentsRawRecord,
   SearchUpdatedDocumentsRecord,
   SearchUpdatedDocumentType,
-} from '../../src';
+} from '../../src/endpoints/search-updated-documents';
+import {
+  HealthboxCountry,
+  HealthboxLanguage,
+  HealthboxRawResponse,
+  HealthboxResponse,
+} from '../../src/types';
 
 export const SEARCH_UPDATED_DOCUMENTS_MOCK_OPTIONS: SearchUpdatedDocumentsOptions = {
   documentType: SearchUpdatedDocumentType.UserManual,
@@ -33,28 +35,28 @@ export const SEARCH_UPDATED_DOCUMENTS_MOCK_PARAMS: SearchUpdatedDocumentsParams 
   f: SearchUpdatedDocumentsFieldRestriction.LastUpdate,
 };
 
+export const SEARCH_UPDATED_DOCUMENTS_MOCK_RAW_RESPONSE: HealthboxRawResponse<SearchUpdatedDocumentsRawRecord> =
+  {
+    result: [
+      {
+        commercial_name: 'test_product',
+        document_id: 'test_doc_id',
+        language_code: HealthboxLanguage.Bulgarian,
+        lastUpdate: '2022-06-14 10:00:00',
+        lastUpdated: '2022-06-14',
+        leafletTypeCode: 'MAN',
+        mah: 'test_mah',
+        mime_type: 'application/pdf',
+        nman_code: 'test_nman_code',
+        source: 'test_source',
+      },
+    ],
+    total_results: 1,
+  };
 
-export const SEARCH_UPDATED_DOCUMENTS_MOCK_RAW_RESPONSE: HealthboxRawResponse<SearchUpdatedDocumentsRawRecord> = {
-   result: [
-     {
-       commercial_name: 'test_product',
-       document_id: 'test_doc_id',
-       language_code: HealthboxLanguage.Bulgarian,
-       lastUpdate: '2022-06-14 10:00:00',
-       lastUpdated: '2022-06-14',
-       leafletTypeCode: 'MAN',
-       mah: 'test_mah',
-       mime_type: 'application/pdf',
-       nman_code: 'test_nman_code',
-       source: 'test_source',
-     },
-   ],
-   total_results: 1,
- };
- 
- export const SEARCH_UPDATED_DOCUMENTS_MOCK_RESPONSE: HealthboxResponse<SearchUpdatedDocumentsRecord> = {
-   results: [
-     {
+export const SEARCH_UPDATED_DOCUMENTS_MOCK_RESPONSE: HealthboxResponse<SearchUpdatedDocumentsRecord> = {
+  results: [
+    {
       commercialName: 'test_product',
       documentId: 'test_doc_id',
       languageCode: HealthboxLanguage.Bulgarian,
@@ -64,8 +66,7 @@ export const SEARCH_UPDATED_DOCUMENTS_MOCK_RAW_RESPONSE: HealthboxRawResponse<Se
       nmanCode: 'test_nman_code',
       source: 'test_source',
       updatedOn: moment('2022-06-14 10:00:00').toDate(),
-     },
-   ],
-   totalCount: 1,
- };
- 
+    },
+  ],
+  totalCount: 1,
+};

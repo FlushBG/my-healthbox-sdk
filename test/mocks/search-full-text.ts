@@ -1,14 +1,16 @@
 import {
-  HealthboxCountry,
-  HealthboxLanguage,
-  HealthboxRawResponse,
-  HealthboxResponse,
   SearchFullTextFieldRestriction,
   SearchFullTextOptions,
   SearchFullTextParams,
   SearchFullTextRawRecord,
   SearchFullTextRecord,
-} from '../../src';
+} from '../../src/endpoints/search-full-text';
+import {
+  HealthboxCountry,
+  HealthboxLanguage,
+  HealthboxRawResponse,
+  HealthboxResponse,
+} from '../../src/types';
 
 export const SEARCH_FULL_TEXT_MOCK_OPTIONS: SearchFullTextOptions = {
   country: HealthboxCountry.Bulgaria,
@@ -45,7 +47,8 @@ export const SEARCH_FULL_TEXT_MOCK_RAW_RESPONSE: HealthboxRawResponse<SearchFull
 };
 
 export const SEARCH_FULL_TEXT_MOCK_RESPONSE: HealthboxResponse<SearchFullTextRecord> = {
-   results: [{
+  results: [
+    {
       activeIngredient: 'test_ingredient',
       commercialName: 'test_product',
       countryCode: HealthboxCountry.Bulgaria,
@@ -55,6 +58,7 @@ export const SEARCH_FULL_TEXT_MOCK_RESPONSE: HealthboxResponse<SearchFullTextRec
       name: 'test_product',
       pharmaceuticalForm: 'test_pharmaceutical_form',
       productId: 'test_product_id',
-   }],
-   totalCount: 1
+    },
+  ],
+  totalCount: 1,
 };

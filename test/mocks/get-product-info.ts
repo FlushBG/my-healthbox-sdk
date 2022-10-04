@@ -1,10 +1,15 @@
 import moment from 'moment';
-import { HealthboxCountry, HealthboxLanguage, HealthboxRawResponse, HealthboxResponse } from '../../src';
 import { GetProductInfoRawRecord, GetProductInfoRecord } from '../../src/endpoints/get-product-info';
+import {
+  HealthboxCountry,
+  HealthboxLanguage,
+  HealthboxRawResponse,
+  HealthboxResponse,
+} from '../../src/types';
 
 export const GET_PRODUCT_INFO_MOCK_RAW_RESPONSE: HealthboxRawResponse<GetProductInfoRawRecord> = {
-   result: [
-     {
+  result: [
+    {
       active_ingredient: 'test_active_ingredient',
       administration_route: 'test_admin_route',
       atc_code: 'test_atc_code',
@@ -36,15 +41,15 @@ export const GET_PRODUCT_INFO_MOCK_RAW_RESPONSE: HealthboxRawResponse<GetProduct
       source: 'test_source',
       therapeutic_area: 'test_therapeutic_area',
       therapeutic_group: 'test_therapeutic_group',
-      therapeutic_indication: 'test_therapeutic_indication'
-     },
-   ],
-   total_results: 1,
- };
- 
- export const GET_PRODUCT_INFO_MOCK_RESPONSE: HealthboxResponse<GetProductInfoRecord> = {
-   results: [
-     {
+      therapeutic_indication: 'test_therapeutic_indication',
+    },
+  ],
+  total_results: 1,
+};
+
+export const GET_PRODUCT_INFO_MOCK_RESPONSE: HealthboxResponse<GetProductInfoRecord> = {
+  results: [
+    {
       activeIngredient: 'test_active_ingredient',
       administrationRoute: 'test_admin_route',
       atcCode: 'test_atc_code',
@@ -76,8 +81,8 @@ export const GET_PRODUCT_INFO_MOCK_RAW_RESPONSE: HealthboxRawResponse<GetProduct
       source: 'test_source',
       therapeuticArea: 'test_therapeutic_area',
       therapeuticGroup: 'test_therapeutic_group',
-      therapeuticIndication: 'test_therapeutic_indication'
-     },
-   ],
-   totalCount: 1,
- };
+      therapeuticIndication: 'test_therapeutic_indication',
+    },
+  ],
+  totalCount: 1,
+};

@@ -1,14 +1,16 @@
 import moment from 'moment';
 import {
-  HealthboxCountry,
-  HealthboxLanguage,
-  HealthboxRawResponse,
-  HealthboxResponse,
   SearchAlertsOptions,
   SearchAlertsParams,
   SearchAlertsRawRecord,
   SearchAlertsRecord,
-} from '../../src';
+} from '../../src/endpoints/search-alerts';
+import {
+  HealthboxCountry,
+  HealthboxLanguage,
+  HealthboxRawResponse,
+  HealthboxResponse,
+} from '../../src/types';
 
 export const SEARCH_ALERTS_MOCK_OPTIONS: SearchAlertsOptions = {
   country: HealthboxCountry.Bulgaria,
