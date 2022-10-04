@@ -67,7 +67,7 @@ export type GetProductInfoRawRecord = {
   prescription_type: string;
   producer: string;
   product_code: string;
-  product_id: number;
+  product_id: string;
   source: string;
   therapeutic_area: string;
   therapeutic_group: string;
@@ -102,7 +102,7 @@ export type GetProductInfoRecord = {
   prescriptionType: string;
   producer: string;
   productCode: string;
-  productId: number;
+  productId: string;
   source: string;
   therapeuticArea: string;
   therapeuticGroup: string;

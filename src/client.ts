@@ -31,6 +31,7 @@ import {
   GetProductDocumentsRawRecord,
   GetProductDocumentsRecord,
 } from './endpoints/get-product-documents';
+import { GetDocumentUrlRawRecord, GetDocumentUrlRecord } from './endpoints/get-document-url';
 
 export class HealthboxClient {
   private client: AxiosInstance;
@@ -127,8 +128,8 @@ export class HealthboxClient {
     };
   }
 
-  async getDocumentUrl(documentId: string): Promise<{ result: string }> {
-    const { result } = await this.get<{result: string}>('/document/getUrl', {
+  async getDocumentUrl(documentId: string): Promise<GetDocumentUrlRecord> {
+    const { result } = await this.get<GetDocumentUrlRawRecord>('/document/getUrl', {
        params: { document_id: documentId }
     });
 
@@ -138,7 +139,6 @@ export class HealthboxClient {
   private async get<T>(endpoint: string, options?: HealthboxRequestOptions): Promise<T> {
     try {
       const response = await this.client.get<T>(endpoint, options);
-      console.log('RAW RES', response);
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {

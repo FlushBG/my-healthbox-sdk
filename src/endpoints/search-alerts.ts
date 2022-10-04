@@ -25,8 +25,9 @@ export class SearchAlerts extends BaseEndpoint {
       category: record.category,
       comments: record.comments,
       countryCode: record.countryCode,
+      description: record.description,
       languageCode: record.languageCode,
-      datePublished: moment(record.pubdate).toDate(),
+      datePublished: moment(record.pubdate, 'D-MM-YYYY').toDate(),
       refLink: record.ref_link,
       source: record.source,
       title: record.title,
@@ -55,6 +56,7 @@ export type SearchAlertsRecord = {
   category: string;
   comments: string;
   countryCode: string;
+  description: string;
   languageCode: string;
   datePublished: Date;
   refLink: string;
