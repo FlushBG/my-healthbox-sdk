@@ -1,0 +1,83 @@
+import moment from 'moment';
+import { HealthboxCountry, HealthboxLanguage, HealthboxRawResponse, HealthboxResponse } from '../../src';
+import { GetProductInfoRawRecord, GetProductInfoRecord } from '../../src/endpoints/get-product-info';
+
+export const GET_PRODUCT_INFO_MOCK_RAW_RESPONSE: HealthboxRawResponse<GetProductInfoRawRecord> = {
+   result: [
+     {
+      active_ingredient: 'test_active_ingredient',
+      administration_route: 'test_admin_route',
+      atc_code: 'test_atc_code',
+      barcode: 'test_barcode',
+      category: 'test_category',
+      class: 'test_class',
+      commercial_name: 'test_commercial_name',
+      composition: 'test_composition',
+      countryCode: HealthboxCountry.Bulgaria,
+      domain: 'test_domain',
+      dosage: 'test_dosage',
+      EAN_code: 'test_ean_code',
+      EMEA_code: 'test_emea_code',
+      EU_code: 'test_eu_code',
+      inn: 'test_inn',
+      languageCode: HealthboxLanguage.Bulgarian,
+      leaflet_short: 'test_leaflet_short',
+      ma_date: '2022-06-14',
+      ma_number: 'test_ma_number',
+      ma_status: 'test_ma_status',
+      mah: 'test_mah',
+      name: 'test_name',
+      NMAN_code: 'test_nman_code',
+      pharmaceutical_form: 'test_pharma_form',
+      prescription_type: 'test_prescription_type',
+      producer: 'test_producer',
+      product_code: 'test_product_code',
+      product_id: 'test_product_id',
+      source: 'test_source',
+      therapeutic_area: 'test_therapeutic_area',
+      therapeutic_group: 'test_therapeutic_group',
+      therapeutic_indication: 'test_therapeutic_indication'
+     },
+   ],
+   total_results: 1,
+ };
+ 
+ export const GET_PRODUCT_INFO_MOCK_RESPONSE: HealthboxResponse<GetProductInfoRecord> = {
+   results: [
+     {
+      activeIngredient: 'test_active_ingredient',
+      administrationRoute: 'test_admin_route',
+      atcCode: 'test_atc_code',
+      barcode: 'test_barcode',
+      category: 'test_category',
+      class: 'test_class',
+      commercialName: 'test_commercial_name',
+      composition: 'test_composition',
+      countryCode: HealthboxCountry.Bulgaria,
+      domain: 'test_domain',
+      dosage: 'test_dosage',
+      eanCode: 'test_ean_code',
+      emeaCode: 'test_emea_code',
+      euCode: 'test_eu_code',
+      inn: 'test_inn',
+      languageCode: HealthboxLanguage.Bulgarian,
+      leafletShort: 'test_leaflet_short',
+      maDate: moment('2022-06-14').toDate(),
+      maNumber: 'test_ma_number',
+      maStatus: 'test_ma_status',
+      mah: 'test_mah',
+      name: 'test_name',
+      nmanCode: 'test_nman_code',
+      pharmaceuticalForm: 'test_pharma_form',
+      prescriptionType: 'test_prescription_type',
+      producer: 'test_producer',
+      productCode: 'test_product_code',
+      productId: 'test_product_id',
+      source: 'test_source',
+      therapeuticArea: 'test_therapeutic_area',
+      therapeuticGroup: 'test_therapeutic_group',
+      therapeuticIndication: 'test_therapeutic_indication'
+     },
+   ],
+   totalCount: 1,
+ };
