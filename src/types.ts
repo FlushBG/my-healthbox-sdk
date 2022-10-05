@@ -1,3 +1,7 @@
+import { SearchAlertsParams } from './endpoints/search-alerts';
+import { SearchFullTextParams } from './endpoints/search-full-text';
+import { SearchUpdatedDocumentsParams } from './endpoints/search-updated-documents';
+
 export type HealthboxConfig = {
   apiKey: string;
   defaultCountry?: HealthboxCountry;
@@ -5,27 +9,33 @@ export type HealthboxConfig = {
 };
 
 export type HealthboxRequestOptions = {
-  params: any;
+  params:
+    | SearchFullTextParams
+    | SearchAlertsParams
+    | SearchUpdatedDocumentsParams
+    | { product_id: string }
+    | { document_id: string }
+    | { nman_code: string };
 };
 
 export type HealthboxRawResponse<T> = {
-   result: T[];
-   total_results: number;
-}
+  result: T[];
+  total_results: number;
+};
 
 export type HealthboxResponse<T> = {
-   results: T[];
-   totalCount: number;
-}
+  results: T[];
+  totalCount: number;
+};
 
 export type LocaleParams = { c?: string; l?: string };
-export type PaginationParams = { limit?: number; from?: number; }
+export type PaginationParams = { limit?: number; from?: number };
 export type TextParam = { q: string };
-export type RestrictToFieldParam = { f?: string; }
+export type RestrictToFieldParam = { f?: string };
 
-export type LocaleOptions = { country?: HealthboxCountry; language?: HealthboxLanguage; }
-export type PaginationOptions = { limit?: number; from?: number; }
-export type RestrictToFieldOptions<T> = { restrictToField?: T; }
+export type LocaleOptions = { country?: HealthboxCountry; language?: HealthboxLanguage };
+export type PaginationOptions = { limit?: number; from?: number };
+export type RestrictToFieldOptions<T> = { restrictToField?: T };
 
 export enum HealthboxLanguage {
   Bulgarian = 'bg',
