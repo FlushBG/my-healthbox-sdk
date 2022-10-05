@@ -1,0 +1,7 @@
+node_modules
+docs
+.github
+coverage
+dist
+.eslintrc.js
+jest.config.js

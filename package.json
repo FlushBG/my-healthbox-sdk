@@ -12,6 +12,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "microbundle --tsconfig tsconfig.json --no-sourcemap",
+    "lint": "eslint . --ext .ts",
     "test": "jest --maxWorkers=1",
     "test:coverage": "jest --coverage --maxWorkers=1"
   },
@@ -43,7 +44,10 @@
     "ts-jest": "^29.0.3"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
     "axios-mock-adapter": "^1.21.2",
+    "eslint": "^8.24.0",
     "microbundle": "^0.15.1",
     "rimraf": "^3.0.2"
   }

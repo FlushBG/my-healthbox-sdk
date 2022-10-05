@@ -130,7 +130,7 @@ export class HealthboxClient {
 
   async getDocumentUrl(documentId: string): Promise<GetDocumentUrlRecord> {
     const { result } = await this.get<GetDocumentUrlRawRecord>('/document/getUrl', {
-       params: { document_id: documentId }
+      params: { document_id: documentId },
     });
 
     return { result };
