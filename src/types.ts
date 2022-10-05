@@ -116,7 +116,7 @@ export enum HealthboxCountry {
   Iceland = 'is',
   Ireland = 'ie',
   Norway = 'no',
-  Croatia = 'eu',
+  Croatia = 'hr',
   Europe = 'eu',
   SouthAfrica = 'za',
   Luxembourg = 'lu',
